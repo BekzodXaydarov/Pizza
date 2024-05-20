@@ -7,7 +7,7 @@ export const cart = createSlice({
   },
   reducers: {
     setCart: (state, action) => {
-      state.product.push(action.payload);
+      state.product.push({...action.payload,count:1});
     },
     setDelete: (state, action) => {
       state.product = state.product.filter((f) => f.id !== action.payload);
@@ -35,8 +35,17 @@ export const cart = createSlice({
         state.product = state.product.filter((f) => f.id !== action.payload);
       }
     },
+    ClearItem: (state) => {
+      state.product = [];
+    },
+    Add: (state, _) => {
+      state.product = state.product.map((item) => {
+        return { ...state.product, count: 2 };
+      });
+    },
   },
 });
 
-export const { setCart, setDelete, IncItem, DecItem } = cart.actions;
+export const { setCart, setDelete, IncItem, DecItem, ClearItem, Add } =
+  cart.actions;
 export default cart.reducer;

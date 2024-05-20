@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { DecItem, IncItem, setCart, setDelete } from "../../redux/cart";
 import { useCart } from "../../redux/selector";
 
-export default function LiComponent({
+export default function MenuItem({
   id,
   img,
-  title,
+  name,
   description,
   price,
   disable,
@@ -32,14 +32,18 @@ export default function LiComponent({
   return (
     <>
       <li className="flex mt-1 w-full h-[112px] p-2">
-        <img src={img} alt="" className={`${disable ? "" : "grayscale "}`} />
+        <img src={img} alt="" className={`${disable ? "grayscale" : " "}`} />
         <div className="flex flex-col w-full ml-2">
-          <h1 className="font-[500] text-[16px] gont-sans">{title}</h1>
-          <p className="text-[#78716C]">{description}</p>
+          <h1 className="font-[500] text-[16px] gont-sans">{name}</h1>
+          <p className="text-[#78716C]">{description.join(",")}</p>
           <div className="flex items-center justify-between w-full mt-auto">
             {disable ? (
               <>
-                <p>€{price}</p>
+                <p className="text-[#78716C] font-[500]">SOLD OUT</p>
+              </>
+            ) : (
+              <>
+                <p>€{price}.00</p>
 
                 {cart.map((x) => x.id).filter((x) => x === id)[0] ? (
                   <div className="flex items-center">
@@ -71,10 +75,6 @@ export default function LiComponent({
                     ADD TO CART
                   </button>
                 )}
-              </>
-            ) : (
-              <>
-                <p className="text-[#78716C] font-[500]">SOLD OUT</p>
               </>
             )}
           </div>

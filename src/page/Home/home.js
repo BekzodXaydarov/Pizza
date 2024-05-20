@@ -13,14 +13,14 @@ export default function Home() {
   const handleChange = (e) => {
     e.preventDefault();
     dispatch(setUser(value));
-    navigate("/order");
+    navigate("/menu");
   };
   return (
     <form
-      className="bg-[#F1F3F0] w-full h-[90vh] text-center"
+      className=" text-center"
       onSubmit={handleChange}
     >
-      <h1 className="pt-[50px] text-[30px] font-sans text-[#44403C] font-[500]">
+      <h1 className="pt-[50px] md:text-[30px] text-[20px] font-sans text-[#44403C] font-[500]">
         The best pizza. <br />{" "}
         <p className="text-[#706A65]">
           Straight out of the oven, straight to you.
@@ -29,7 +29,7 @@ export default function Home() {
       {user?.username ? (
         <button
           className="bg-[#FACC15] px-[25px] py-[11px] rounded-[20px] font-[400] mt-[30px]"
-          onClick={() => navigate("/order")}
+          onClick={() => navigate("/menu")}
         >
           CONTINUE ORDERING,{user?.username}
         </button>
@@ -41,7 +41,7 @@ export default function Home() {
           <input
             type="text"
             placeholder="Your full name"
-            className="px-5 py-3 w-[288px] h-[45px]  outline-[#F2C00E] outline-1 rounded-[20px] mt-[15px]"
+            className="px-5 py-3 w-[288px] md:h-[45px] text-[14px] h-[38px] focus:outline outline-[#FACC15] outline-4 rounded-[20px] mt-[15px]"
             onChange={(event) => {
               setValue(event.target.value);
               if (event.target.value.length > 0) {
